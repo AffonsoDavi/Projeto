@@ -2,6 +2,8 @@
 COLDIGO = new Object();
 
 $(document).ready(function() {
+	 //Crai uma constante com o valor da URI raiz do REST
+	 COLDIGO.PATH = "/_ProjetoTrilhaWeb/rest/";
 	
 	$("header").load("/_ProjetoTrilhaWeb/pages/admin/general/header.html");
 	$("footer").load("/_ProjetoTrilhaWeb/pages/admin/general/footer.html");

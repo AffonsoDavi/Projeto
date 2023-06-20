@@ -7,7 +7,7 @@ $(document).ready(function() {
 		alert("Tentando buscar marcas");
 		$.ajax({
 			type: "GET",
-			url:"/_ProjetoTrilhaWeb/rest/marca/buscar",
+			url: COLDIGO.PATH + "marca/buscar",
 			success: function (marcas) {
 				
 				if (marcas!=""){
@@ -53,4 +53,48 @@ $(document).ready(function() {
 	
 	COLDIGO.produto.carregarMarcas();
 	
+	//carrega no BD o produto informado
+	COLDIGO.produto.cadastrar = function(){
+		var produto = new Object();
+		produto.categoria = document.frmAddProduto.categoria.value;
+		produto.marcaId = document.frmAddProduto.marcaId.value;
+		produto.modelo = document.frmAddProduto.modelo.value;
+		produto.capacidade = document.frmAddProduto.capacidade.value;
+		produto.valor = document.frmAddProduto.valor.value;
+		
+		 //valida o campo valor
+		// var expRegValor = new RegExp("^[0-9]{1,}[,]{1}[0-9]{2}$");
+		// if(!expRegValor.test(produto.valor)){
+		//	 alert("Preencha o campo Valor corretamente");
+		//	 document.frmAddProduto.valor.focus();
+		//	 return false;
+		// }
+		 
+		//valida os outros campos do formulario
+		if((produto.categoria=="")||(produto.marcaId=="")||(produto.modelo=="")
+		||(produto.capacidade=="")){
+			COLDIGO.exibirAviso("Preencha todos os campos!");
+	
+	
+		
+	console.log(produto.valor);
+		}else{
+			
+			//trasforma a "," em "."
+			produto.valor = produto.valor.replace(",",".");	
+			
+			$.ajax({
+				type: "POST",
+				url: COLDIGO.PATH + "produto/inserir",
+				data: JSON.stringify(produto),
+				success: function (msg){
+					COLDIGO.exibirAviso(msg);
+					$("#addProduto").trigger("reset");
+				},
+				error: function(info){
+					COLDIGO.exibirAviso("Erro ao cadastrar um novo produto:" + info.status + " - " + info.statusText);
+				}
+			});
+		}
+	}
 });

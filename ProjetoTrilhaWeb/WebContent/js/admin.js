@@ -38,7 +38,7 @@ $(document).ready(function() {
 					$(this).dialog("close");
 				}
 			}
-		};
+		}; 
 		$("#modalAviso").html(aviso);
 		$("#modalAviso").dialog(modal);
 	};

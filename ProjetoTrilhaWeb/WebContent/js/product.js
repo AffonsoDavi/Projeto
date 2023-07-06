@@ -71,6 +71,12 @@ $(document).ready(function() {
 		produto.modelo = document.frmAddProduto.modelo.value;
 		produto.capacidade = document.frmAddProduto.capacidade.value;
 		produto.valor = document.frmAddProduto.valor.value;
+<<<<<<< HEAD
+=======
+		
+		
+		
+>>>>>>> 149991d7bb811fa91b529de10ee78707f73886e9
 		 
 		//valida os outros campos do formulario
 		if((produto.categoria=="")||(produto.marcaId=="")||(produto.modelo=="")
@@ -86,7 +92,10 @@ $(document).ready(function() {
 				success: function (msg){
 					COLDIGO.exibirAviso(msg);
 					$("#addProduto").trigger("reset");
+<<<<<<< HEAD
 					COLDIGO.produto.buscar();
+=======
+>>>>>>> 149991d7bb811fa91b529de10ee78707f73886e9
 					
 				},
 				error: function(info){
